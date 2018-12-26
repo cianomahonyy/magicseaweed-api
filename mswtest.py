@@ -36,35 +36,42 @@ def returnDate():
 		myListOfDays.append(dayLoop)
 	
 	return myListOfDays
-	
-
-for i in range(0, 40):
-	myListOfSwell.append(data[i]['swell']['absMinBreakingHeight'])
-	myListOfWind.append(data[i]['wind']['compassDirection'])
-
-	unixDayLoop = data[i]['localTimestamp']
-	dayLoop = datetime.utcfromtimestamp(unixDayLoop).strftime('%A %H:00')
-	myListOfDays.append(dayLoop)
-
-	windDirection = myListOfWind[i]
-
-	if windDirection == 'SSW':
-		print(myListOfSwell[i])
-		print(myListOfDays[i])
-		print(myListOfWind[i])
-
-		print('Good')
 
 
+fig, ax = plt.subplots(figsize=(12, 6))
 
-		print()
+swellBars = ax.bar(returnDate(), returnSwell())	
 
 
+def windChanger(firstWind, secondWind, thirdWind):
 
-plt.bar(returnDate(), returnSwell())
+	for i in range(0, 40):
+
+		myListOfWind.append(data[i]['wind']['compassDirection'])
+
+		windDirection = myListOfWind[i]
+
+		if windDirection == firstWind or windDirection == secondWind or windDirection == thirdWind :
+			print(myListOfSwell[i])
+			print(myListOfDays[i])
+			print(myListOfWind[i])
+
+			print('Good')
+
+			swellBars[i].set_color('g')
+
+		else:
+
+			swellBars[i].set_color('r')
+
+			print()
+
+
+windChanger('S', 'SSW', 'SW')
+
+
 plt.xlabel('Date')
 plt.ylabel('Swell Height')
-
 
 plt.title('Garretstown Swell Report')
 
