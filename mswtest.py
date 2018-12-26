@@ -1,7 +1,5 @@
-import urllib3
 import json
 import requests
-import urllib.parse
 from datetime import datetime
 
 import matplotlib.pyplot as plt
@@ -71,33 +69,4 @@ plt.ylabel('Swell Height')
 plt.title('Garretstown Swell Report')
 
 plt.show()
-
-
-
-#for i in data:
-#	print(i)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
